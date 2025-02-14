@@ -133,6 +133,7 @@ class PostOcr:
         duplicated_raw = raw_classified_order.copy()
         duplicated_words = classified_words.copy()
         result = Result()
+        print(duplicated_raw, duplicated_words)
         # Get the length of the target subsequence
         for pattern in self.patterns:
             target_length = len(pattern) 
@@ -173,6 +174,7 @@ class PostOcr:
                                 word = 1
                         data[label] = word
                     map_classified = Item(data, level)
+                    print(pattern, map_classified)
                     result.items.append(map_classified)
                     del duplicated_words[i:i + target_length] 
                     del duplicated_raw[i:i + target_length]
@@ -194,6 +196,7 @@ class PostOcr:
                 if(row == OTHER_CHARGE):
                     field_name = 'other_charge'
                 if parsed_price >= 0:
+                    print(field_name, parsed_price)
                     result.charge[field_name] = parsed_price
             j+=1
         end_time = time.time()
